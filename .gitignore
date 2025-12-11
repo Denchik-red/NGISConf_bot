@@ -1,0 +1,5 @@
+# Файл для локальной конфигурации с секретами
+config/local.json
+
+# Зависимости Node.js
+node_modules
