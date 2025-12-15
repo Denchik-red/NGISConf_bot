@@ -12,7 +12,6 @@ const bot = new Telegraf(config.get("TELEGRAM_TOKEN"), {
 bot.telegram.setMyCommands([
     {command: "start", description: "Перезапустить бота"},
     {command: "tasks", description: "Показать все задачи"},
-    {command: "active_tasks", description: "Показать активные задачи"}
 ])
 
 bot.command("start", (ctx) => {
@@ -75,45 +74,6 @@ bot.on(message('text'), async (ctx, next) => {
     }
     return next();
 });
-
-// bot.command("active_tasks", async (ctx) => {
-//     try {
-//         const tasks = await db.tasks.findAll({where: {status: 1}})
-
-//         if (tasks.length == 0) {
-//             ctx.reply("Нет активных задач")
-//             return
-//         }
-
-//         const activeTasks = [];
-
-//         tasks.forEach(task => {
-//             activeTasks.push([Markup.button.callback(task.name, `task_${task.id}`)])
-//         })
-
-//         console.log(activeTasks)
-//         ctx.reply('Меню:', Markup.inlineKeyboard(
-//             activeTasks
-//         ))
-
-//     } catch(e) {
-//         console.log(e)
-//         ctx.reply("Ошибка")
-//     }
-// })
-
-
-// bot.hears("task", (ctx) => {
-//     ctx.reply(
-//         'Выберите день:',
-//         Markup.inlineKeyboard([
-//         [Markup.button.callback('Суббота 06 декабря', 'day_2025-12-06')],
-//         [Markup.button.callback('Пятница 05 декабря', 'day_2025-12-05')],
-//         [Markup.button.callback('Четверг 04 декабря', 'day_2025-12-04')],
-//         [Markup.button.callback('Назад', 'back')]
-//         ])
-//     );
-// });
 
 bot.on(message('text'), (ctx) => {
     ctx.reply("Неизвестный текст")
